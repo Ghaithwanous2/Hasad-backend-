@@ -110,6 +110,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     updated_at = models.DateTimeField(
         auto_now=True,
     )
+    first_name = models.CharField(
+        max_length=30,
+        )
+    last_name = models.CharField(
+        max_length=30,
+        )
 
     objects = UserManager()
 
