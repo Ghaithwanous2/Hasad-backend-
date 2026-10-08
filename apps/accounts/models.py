@@ -4,7 +4,7 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 
-
+#  user creator
 class UserManager(BaseUserManager):
 
     def create_user(self, phone, password=None, **extra_fields):
@@ -24,6 +24,10 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
 
         return user
+
+           
+           
+            # super user creator
 
     def create_superuser(self, phone, password=None, **extra_fields):
         if not password:
@@ -45,7 +49,13 @@ class UserManager(BaseUserManager):
             password=password,
             **extra_fields,
         )
+    
 
+
+
+
+
+                # user model
 
 class User(AbstractBaseUser, PermissionsMixin):
 
@@ -110,3 +120,43 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         db_table = "users"
+
+
+
+# Farmer Profile
+
+
+
+class FarmerProfile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+    )
+
+    farm_name = models.CharField(
+        max_length=150,
+        blank=True,
+    )
+
+    address = models.TextField(
+        blank=True,
+    )
+
+
+
+# Trader Profile
+
+class TraderProfile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+    )
+
+    business_name = models.CharField(
+        max_length=150,
+        blank=True
+    )
+
+    address = models.TextField(
+        blank=True,
+    )
