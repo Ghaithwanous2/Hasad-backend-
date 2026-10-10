@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.db import models
+from django.contrib.gis.db import models
 
 
 class Field(models.Model):
@@ -9,24 +9,19 @@ class Field(models.Model):
         related_name="fields",
     )
 
-    name = models.CharField(
-        max_length=150,
+    name = models.CharField(max_length=150)
+
+    location = models.PointField(
+        geography=True,
+        srid=4326,
     )
 
-    location = models.CharField(max_length=255)
-
-    latitude = models.DecimalField(
-         max_digits=9,
-        decimal_places=6,
-    )
-
-    longitude = models.DecimalField(
-        max_digits=9,
-        decimal_places=6,
+    address = models.CharField(
+        max_length=255,
+        blank=True,
     )
 
     area = models.DecimalField(
         max_digits=10,
         decimal_places=2,
     )
-

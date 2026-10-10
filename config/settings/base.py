@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": env("DB_NAME"),
         "USER": env("DB_USER"),
         "PASSWORD": env("DB_PASSWORD"),
@@ -135,3 +135,10 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+GDAL_LIBRARY_PATH = (
+    r"C:\Users\gaiet\AppData\Local\Programs\OSGeo4W\bin\gdal313.dll"
+)
+
+GEOS_LIBRARY_PATH = (
+    r"C:\Users\gaiet\AppData\Local\Programs\OSGeo4W\bin\geos_c.dll"
+)
